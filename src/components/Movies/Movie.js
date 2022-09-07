@@ -2,6 +2,11 @@ import React from 'react';
 import genres from '../../data/genres';
 
 function Movie({ movie: { title, genre, year } }) {
+  console.log(title, genre, year);
+
+  const editMovieHandler = () => {};
+  const deleteMovieHandler = () => {};
+
   return (
     <li className="list-group-item">
       <div className="movie">
@@ -13,10 +18,18 @@ function Movie({ movie: { title, genre, year } }) {
           <p className="movie__content--year">{year}</p>
         </div>
         <div className="movie__actions">
-          <button type="button" className="btn btn-outline-success">
+          <button
+            type="button"
+            className="btn btn-outline-success"
+            onClick={editMovieHandler}
+          >
             Edit
           </button>
-          <button type="button" className="btn btn-outline-danger">
+          <button
+            type="button"
+            className="btn btn-outline-danger"
+            onClick={deleteMovieHandler}
+          >
             Delete
           </button>
         </div>

@@ -1,16 +1,20 @@
+// Increasing movies_id - to track all movies.
+// To be used for the following created data.
+// Scenario: We deleted item with id:10, and created a new data.
+// It automatically would create with id:10, which we don't want.
 function generateDataId(key) {
-  const keyName = `${key}_id`;
+  const keyName = `${key}_id`; // 'movies_id' : id
   let id = localStorage.getItem(keyName);
 
-  if (id === null) id = 0;
-  else id = parseInt(id);
+  id === null ? (id = 0) : (id = parseInt(id));
 
   id++;
   localStorage.setItem(keyName, id);
   return id;
 }
-
 //----------------------
+
+// key = 'movies' []
 function readData(key) {
   const data = localStorage.getItem(key);
 
@@ -30,8 +34,8 @@ function writeData(key, data) {
 
 // CRUD FUNCTIONALITY ===========================
 export function create(key, data) {
-  const d = readData(key);
-  data.id = generateDataId(key);
+  const d = readData(key); // 'movies' []
+  data.id = generateDataId(key); // we assign id to data.id, based on 'movies_id'
   d.push(data);
   writeData(key, d);
 }

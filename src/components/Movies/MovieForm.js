@@ -3,11 +3,11 @@ import genres from '../../data/genres';
 import MovieContext from '../../contexts/MovieContext';
 
 function Create() {
+  const { setCreateData } = useContext(MovieContext);
+
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState(1);
   const [year, setYear] = useState('');
-
-  const { setCreateData } = useContext(MovieContext);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
