@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import genres from '../data/genres';
+import DataContext from './DataContext';
 
 function Create() {
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState('1');
   const [year, setYear] = useState('');
 
+  const { setCreateData } = useContext(DataContext);
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
-    console.log(title, genre, year);
+    setCreateData({ title: title, genre: parseInt(genre), year: year });
+
     setTitle('');
     setGenre('1');
     setYear('');
