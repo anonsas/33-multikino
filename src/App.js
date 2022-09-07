@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
-import Create from './components/Create';
-import DataContext from './contexts/DataContext';
+import Create from './components/Movies/MovieForm';
+import MovieContext from './contexts/MovieContext';
 import { create, read } from './utils/localStorage';
-import List from './components/List';
+import { Movies } from './components/index';
 
 const key = 'movies';
 
@@ -25,18 +25,18 @@ function App() {
   }, []);
 
   return (
-    <DataContext.Provider value={{ setCreateData, movies }}>
+    <MovieContext.Provider value={{ setCreateData, movies }}>
       <div className="container">
         <div className="row">
           <div className="col-4">
             <Create />
           </div>
           <div className="col-8">
-            <List />
+            <Movies />
           </div>
         </div>
       </div>
-    </DataContext.Provider>
+    </MovieContext.Provider>
   );
 }
 

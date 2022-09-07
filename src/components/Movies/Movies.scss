@@ -1,0 +1,26 @@
+.movie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__details {
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+
+  &__content {
+    flex: 1;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    &--title {
+      font-weight: 700;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    column-gap: 2rem;
+  }
+}

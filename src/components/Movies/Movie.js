@@ -1,8 +1,7 @@
 import React from 'react';
-import genres from '../data/genres';
+import genres from '../../data/genres';
 
-function Line({ movie: { title, genre, year } }) {
-  console.log(title);
+function Movie({ movie: { title, genre, year } }) {
   return (
     <li className="list-group-item">
       <div className="movie">
@@ -14,10 +13,10 @@ function Line({ movie: { title, genre, year } }) {
           <p className="movie__content--year">{year}</p>
         </div>
         <div className="movie__actions">
-          <button type="button" className="movie__actions--edit">
+          <button type="button" className="btn btn-outline-success">
             Edit
           </button>
-          <button type="button" className="movie__actions--delete">
+          <button type="button" className="btn btn-outline-danger">
             Delete
           </button>
         </div>
@@ -26,4 +25,4 @@ function Line({ movie: { title, genre, year } }) {
   );
 }
 
-export default Line;
+export default Movie;

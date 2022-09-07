@@ -1,21 +1,22 @@
 import React, { useContext, useState } from 'react';
-import genres from '../data/genres';
-import DataContext from '../contexts/DataContext';
+import genres from '../../data/genres';
+import MovieContext from '../../contexts/MovieContext';
 
 function Create() {
   const [title, setTitle] = useState('');
-  const [genre, setGenre] = useState('1');
+  const [genre, setGenre] = useState(1);
   const [year, setYear] = useState('');
 
-  const { setCreateData } = useContext(DataContext);
+  const { setCreateData } = useContext(MovieContext);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
+    if (!title || !year) return alert('Please fill in the blanks');
 
     setCreateData({ title: title, genre: parseInt(genre), year: year });
 
     setTitle('');
-    setGenre('1');
+    setGenre(1);
     setYear('');
   };
 
@@ -31,6 +32,7 @@ function Create() {
             className="form-control"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
         </div>
 
@@ -58,6 +60,7 @@ function Create() {
             className="form-control"
             value={year}
             onChange={(e) => setYear(e.target.value)}
+            required
           />
         </div>
 
