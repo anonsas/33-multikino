@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import Create from './components/Create';
-import DataContext from './components/DataContext';
+import DataContext from './contexts/DataContext';
 import { create, read } from './utils/localStorage';
 import List from './components/List';
 

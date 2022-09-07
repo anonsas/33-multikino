@@ -14,8 +14,8 @@ function Line({ movie: { title, genre, year } }) {
           <p className="movie__content--year">{year}</p>
         </div>
         <div className="movie__actions">
-          <button type="button" className="movie__actions--update">
-            Update
+          <button type="button" className="movie__actions--edit">
+            Edit
           </button>
           <button type="button" className="movie__actions--delete">
             Delete

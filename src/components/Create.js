@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import genres from '../data/genres';
-import DataContext from './DataContext';
+import DataContext from '../contexts/DataContext';
 
 function Create() {
   const [title, setTitle] = useState('');

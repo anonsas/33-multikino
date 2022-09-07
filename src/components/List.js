@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
-import DataContext from './DataContext';
+import DataContext from '../contexts/DataContext';
 import Line from './Line';
 
 function List() {

@@ -1,16 +1,18 @@
-function generateId(key) {
-  let id = localStorage.getItem(key + '_id');
+function generateDataId(key) {
+  const keyName = `${key}_id`;
+  let id = localStorage.getItem(keyName);
 
   if (id === null) id = 0;
   else id = parseInt(id);
 
   id++;
-  localStorage.setItem(key + '_id', id);
+  localStorage.setItem(keyName, id);
   return id;
 }
 
+//----------------------
 function readData(key) {
-  const data = localStorage.getItem('key');
+  const data = localStorage.getItem(key);
 
   if (data === null) {
     localStorage.setItem(key, JSON.stringify([]));
@@ -19,15 +21,17 @@ function readData(key) {
 
   return JSON.parse(data);
 }
+//----------------------
 
 function writeData(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+//----------------------
 
 // CRUD FUNCTIONALITY ===========================
 export function create(key, data) {
   const d = readData(key);
-  data.id = generateId(key);
+  data.id = generateDataId(key);
   d.push(data);
   writeData(key, d);
 }
@@ -40,7 +44,7 @@ export function update(key, data, id) {
   const d = readData(key);
   writeData(
     key,
-    d.map((item) => (item.id !== id ? { ...item } : { ...item, ...data, id: id }))
+    d.map((item) => (item.id === id ? { ...item, ...data, id: id } : { ...item }))
   );
 }
 
