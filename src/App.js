@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.scss';
 import Create from './components/Create';
 import DataContext from './components/DataContext';
-import { create } from './utils/localStorage';
+import { create, read } from './utils/localStorage';
 import List from './components/List';
 
 const key = 'movies';
@@ -10,12 +10,19 @@ const key = 'movies';
 function App() {
   const [movies, setMovies] = useState(null);
   const [createData, setCreateData] = useState(null);
+  const [lastUpdate, setLastUpdate] = useState(Date.now());
 
   // CREATE
   useEffect(() => {
     if (createData === null) return;
     create(key, createData);
+    setLastUpdate(Date.now());
   }, [createData]);
+
+  // READ
+  useEffect(() => {
+    setMovies(read(key));
+  }, []);
 
   return (
     <DataContext.Provider value={{ setCreateData, movies }}>
