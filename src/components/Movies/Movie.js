@@ -1,21 +1,23 @@
 import React from 'react';
 import genres from '../../data/genres';
+import { useContext } from 'react';
+import MovieContext from '../../contexts/MovieContext';
 
-function Movie({ movie: { title, genre, year } }) {
-  console.log(title, genre, year);
+function Movie({ movie }) {
+  console.log(movie);
+  const { setDeleteData } = useContext(MovieContext);
 
   const editMovieHandler = () => {};
-  const deleteMovieHandler = () => {};
 
   return (
     <li className="list-group-item">
       <div className="movie">
         <div className="movie__content">
-          <p className="movie__content--title">{title}</p>
+          <p className="movie__content--title">{movie.title}</p>
           <p className="movie__content--genre">
-            {genres?.find((gen) => gen.id === genre).type}
+            {genres?.find((gen) => gen.id === movie.genre).type}
           </p>
-          <p className="movie__content--year">{year}</p>
+          <p className="movie__content--year">{movie.year}</p>
         </div>
         <div className="movie__actions">
           <button
@@ -28,7 +30,7 @@ function Movie({ movie: { title, genre, year } }) {
           <button
             type="button"
             className="btn btn-outline-danger"
-            onClick={deleteMovieHandler}
+            onClick={() => setDeleteData(movie)}
           >
             Delete
           </button>

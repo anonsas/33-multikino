@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import genres from '../../data/genres';
 import MovieContext from '../../contexts/MovieContext';
 
-function Create() {
+function MovieForm() {
   const { setCreateData } = useContext(MovieContext);
 
   const [title, setTitle] = useState('');
@@ -76,4 +76,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default MovieForm;

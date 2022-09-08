@@ -54,5 +54,8 @@ export function update(key, data, id) {
 
 export function destroy(key, id) {
   const d = readData(key);
-  writeData(d.filter((item) => item.id !== id));
+  writeData(
+    key,
+    d.filter((item) => item.id !== id)
+  );
 }
