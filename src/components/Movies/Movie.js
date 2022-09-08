@@ -5,7 +5,7 @@ import MovieContext from '../../contexts/MovieContext';
 
 function Movie({ movie }) {
   console.log(movie);
-  const { setDeleteData } = useContext(MovieContext);
+  const { setDeleteData, setModalData } = useContext(MovieContext);
 
   const editMovieHandler = () => {};
 
@@ -23,7 +23,7 @@ function Movie({ movie }) {
           <button
             type="button"
             className="btn btn-outline-success"
-            onClick={editMovieHandler}
+            onClick={() => setModalData(movie)}
           >
             Edit
           </button>
