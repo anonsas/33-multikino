@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 import MovieContext from './contexts/MovieContext';
-import { create, read, destroy, update } from './utils/localStorage';
-import { MovieForm, Movies } from './components/index';
-import MovieModal from './components/Movies/MovieModal';
+import { read, create, update, destroy } from './utils/localStorage';
+import { MovieForm, Movies, MovieModal, MovieModalDelete } from './components/index';
+import Popup from './helpers/Popup';
 
 const key = 'movies';
 
@@ -15,34 +16,50 @@ function App() {
   const [deleteData, setDeleteData] = useState(null);
 
   const [modalData, setModalData] = useState(null);
+  const [modalDataDelete, setModalDataDelete] = useState(null);
   const [editData, setEditData] = useState(null);
+  const [messages, setMessages] = useState([]);
 
   // CREATE
   useEffect(() => {
-    if (createData === null) return;
+    if (!createData) return;
     create(key, createData);
     setLastUpdate(Date.now());
+    makeMsg(`${createData.title} - is added to the list!`);
   }, [createData]);
 
   // READ
   useEffect(() => {
     setMovies(read(key));
-  }, []);
+  }, [lastUpdate]);
 
   // UPDATE
   useEffect(() => {
-    if (editData === null) return;
+    if (!editData) return;
     update(key, editData, editData.id);
     setLastUpdate(Date.now());
+    makeMsg(`${editData?.title} - is updated!`);
   }, [editData]);
 
   // DELETE
   useEffect(() => {
-    if (deleteData === null) return;
-    console.log(deleteData);
+    if (!deleteData) return;
     destroy(key, deleteData.id);
     setLastUpdate(Date.now());
+    makeMsg(`${deleteData.title} - is removed from the list!`);
   }, [deleteData]);
+
+  const makeMsg = (textMsg) => {
+    const msg = {
+      id: uuidv4(),
+      text: textMsg,
+    };
+    setMessages((prevState) => [...prevState, msg]);
+
+    setTimeout(() => {
+      setMessages((prevState) => prevState.filter((mes) => mes.id !== msg.id));
+    }, 2000);
+  };
 
   return (
     <MovieContext.Provider
@@ -53,6 +70,10 @@ function App() {
         modalData,
         setModalData,
         setEditData,
+        messages,
+        setMessages,
+        modalDataDelete,
+        setModalDataDelete,
       }}
     >
       <div className="container">
@@ -66,6 +87,8 @@ function App() {
         </div>
       </div>
       <MovieModal />
+      <Popup />
+      <MovieModalDelete />
     </MovieContext.Provider>
   );
 }

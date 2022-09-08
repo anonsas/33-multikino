@@ -5,9 +5,7 @@ import MovieContext from '../../contexts/MovieContext';
 
 function Movie({ movie }) {
   console.log(movie);
-  const { setDeleteData, setModalData } = useContext(MovieContext);
-
-  const editMovieHandler = () => {};
+  const { setModalData, setModalDataDelete } = useContext(MovieContext);
 
   return (
     <li className="list-group-item">
@@ -30,7 +28,7 @@ function Movie({ movie }) {
           <button
             type="button"
             className="btn btn-outline-danger"
-            onClick={() => setDeleteData(movie)}
+            onClick={() => setModalDataDelete(movie)}
           >
             Delete
           </button>

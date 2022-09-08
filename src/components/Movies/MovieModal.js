@@ -3,8 +3,7 @@ import MovieContext from '../../contexts/MovieContext';
 import genres from '../../data/genres';
 
 function MovieModal() {
-  const { modalData, setModalData, setCreateData, setEditData } =
-    useContext(MovieContext);
+  const { modalData, setModalData, setEditData } = useContext(MovieContext);
 
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState(1);
