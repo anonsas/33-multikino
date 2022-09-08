@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/33-multikino/static/css/main.2ea6a81e.css",
+    "main.js": "/33-multikino/static/js/main.5e20a1a4.js",
+    "index.html": "/33-multikino/index.html",
+    "main.2ea6a81e.css.map": "/33-multikino/static/css/main.2ea6a81e.css.map",
+    "main.5e20a1a4.js.map": "/33-multikino/static/js/main.5e20a1a4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ea6a81e.css",
+    "static/js/main.5e20a1a4.js"
+  ]
+}
